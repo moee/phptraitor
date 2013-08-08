@@ -42,8 +42,13 @@ class GetSetTest
         $getSet->setHello('hello');
     }
 
+<<<<<<< HEAD
     /**
      * @expectedException \BadMethodCallException
+=======
+    /*
+     * @Test 
+>>>>>>> 6a555f326f82ec1eb2ae6121be7262610125089d
      */
     public function testCallGibberish()
     {
