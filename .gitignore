@@ -1,0 +1,7 @@
+vendor
+.metadata
+composer.phar
+*.swp
+.buildpath
+.project
+.settings
