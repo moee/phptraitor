@@ -21,11 +21,7 @@ trait GetSet {
                 }
             } 
         }
-<<<<<<< HEAD
         throw new \BadMethodCallException("Method " . $method . " does not exist");
-=======
-        throw new \Exception("Method $method value not found");
->>>>>>> 6a555f326f82ec1eb2ae6121be7262610125089d
     }
     
     function getReturnType()
