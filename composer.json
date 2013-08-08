@@ -1,0 +1,21 @@
+{
+    "name": "moee/traitor",
+    "description": "A collection of traits for PHP >= 5.4",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "moee",
+            "email": "moee@github"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "phpunit/phpunit": "3.7.23"
+    },
+    "autoload": {
+        "psr-0": {
+            "Traitor": "src/"
+        }
+    }
+}
