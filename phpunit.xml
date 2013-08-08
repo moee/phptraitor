@@ -18,7 +18,7 @@
          verbose="false">
     <testsuites>
       <testsuite name="ts1">
-        <directory>Traitor/GetSetTest.php</directory>
+        <directory>./tests/Traitor</directory>
       </testsuite>
     </testsuites>
 </phpunit>
