@@ -1,6 +1,7 @@
 vendor
 .metadata
 composer.phar
+composer.lock
 *.swp
 .buildpath
 .project
