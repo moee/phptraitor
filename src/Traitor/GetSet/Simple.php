@@ -2,13 +2,23 @@
 
 namespace Traitor\GetSet;
 
+/**
+ * @Annotation
+ * @author moe
+ *
+ */
 class Simple implements Field
 {
-    function __construct($name)
+    function __construct($name = null)
+    {
+        $this->setName($name);
+    }
+    
+    function setName($name)
     {
         $this->name = $name;
     }
-
+    
     function getName()
     {
         return $this->name;
@@ -24,4 +34,7 @@ class Simple implements Field
         $this->value = $value;
         return $this;
     }
+    
+    
+    
 }

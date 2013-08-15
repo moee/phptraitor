@@ -1,4 +1,5 @@
 <?php 
+use Traitor\GetSet\Simple;
 
 class GetSetTest
     extends PHPUnit_Framework_TestCase
@@ -10,6 +11,7 @@ class GetSetTest
     public function testHasGetter()
     {
         $getSet = $this->getObjectForTrait('Traitor\GetSet');
+        return;
         $field = $this->getMock('Traitor\GetSet\Field');
         $field->expects($this->any())
             ->method('getName')
@@ -17,8 +19,10 @@ class GetSetTest
         $field->expects($this->any())
             ->method('getValue')
             ->will($this->returnValue('hello'));
+        $getSet->expects($this->any())
+            ->method('getFields')
+            ->will($this->returnValue($field));
         
-        $getSet->addField($field);
         
         $this->assertEquals("hello", $getSet->getHello());
     }
@@ -58,4 +62,28 @@ class GetSetTest
         
         $getSet->f();
     }
+    
+    public function testAnnotationSetter()
+    {
+        $testObject = new GetSetClass();
+        $testObject->setName('name');
+    }
+    
+    public function testAnnotationGetter()
+    {
+        $testObject = new GetSetClass();
+        $testObject->setName('name2');
+        $this->assertEquals('name2', $testObject->getName());
+    }
+}
+
+
+
+class GetSetClass {
+    use Traitor\GetSet;
+    
+    /**
+     * @Simple
+     */
+    private $name;
 }
