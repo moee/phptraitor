@@ -3,12 +3,16 @@
 namespace Traitor\GetSet;
 
 /**
+ * Simply set and get a value.
+ * 
  * @Annotation
  * @author moe
  *
  */
 class Simple implements Field
 {
+    private $value = null;
+    
     function __construct($name = null)
     {
         $this->setName($name);
