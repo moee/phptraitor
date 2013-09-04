@@ -7,7 +7,12 @@ use Traitor\GetSet\Simple;
 use Doctrine\Common\Annotations\SimpleAnnotationReader;
 use Doctrine\Common\Annotations\AnnotationReader;
 
-
+/**
+ * This trait extends (private) fields of a class that are annoted with
+ * an implementation of {@link Field} by a virtual getter and setter.
+ * @author moe
+ *
+ */
 trait GetSet {
     private $fields = array();
     
