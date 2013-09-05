@@ -22,3 +22,8 @@ Usage
 -----
 
 For some example on how to use phptraitor, see the [phptraitor_demo](https://github.com/moee/phptraitor_demo) repository.
+
+Build Status
+------------
+
+[![Build Status](https://travis-ci.org/moee/phptraitor.png?branch=master)](https://travis-ci.org/moee/phptraitor)
