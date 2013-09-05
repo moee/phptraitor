@@ -15,8 +15,8 @@
     "require": {
         "php": ">=5.4.0",
         "doctrine/annotations": "1.0.*@dev",
-        "zendframework/zend-stdlib": "2.2.*@dev",
-        "zendframework/zend-validator": "2.2.*@dev"
+        "zendframework/zend-stdlib": "2.2.4",
+        "zendframework/zend-validator": "2.2.4"
     },
     "autoload": {
         "psr-0": {
