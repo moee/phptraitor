@@ -3,7 +3,7 @@
 namespace Traitor;
 
 use Traitor\GetSet\Field;
-use Traitor\GetSet\Simple;
+
 use Doctrine\Common\Annotations\SimpleAnnotationReader;
 use Doctrine\Common\Annotations\AnnotationReader;
 
@@ -14,13 +14,21 @@ use Doctrine\Common\Annotations\AnnotationReader;
  *
  */
 trait GetSet {
+    
+    /**
+     * List of available annotations.
+     * @var array
+     */
+    private $annotations = array(
+        '\Traitor\GetSet\Simple',
+        '\Traitor\GetSet\ZendValidator'
+    );
+    
     private $fields = array();
     
     function __call($method, $value)
     {
-        //TODO Without this the Annotation Parser fails to autoload
-        // the class and I'm not sure why ...
-        $simple = new Simple();
+        $this->loadAnnotations();
         
         $phpParser = new AnnotationReader();
         
@@ -41,11 +49,16 @@ trait GetSet {
             if ($field->getName() == $name) {
                 if ($action == 'set') {
                     $field->setValue($value[0]);
-                    return $this;
+                    $found = true;
                 } elseif ($action == 'get') {
                     return $field->getValue();
                 }
             } 
+        }
+        
+        if (@$found) {
+            return true;
+            
         }
         throw new \BadMethodCallException("Method " . $method . " does not exist");
     }
@@ -53,5 +66,14 @@ trait GetSet {
     public function addField(Field $field)
     {
         $this->fields[] = $field;
+    }
+    
+    private function loadAnnotations()
+    {
+        //TODO Without this the Annotation Parser fails to autoload
+        // the class and I'm not sure why ...
+        foreach ($this->annotations as $annotation) {
+            new $annotation(array());
+        } 
     }
 }

@@ -6,13 +6,14 @@ class SimpleTest
  {
     public function testGetName()
     {
-        $simple = new Simple('simple');
+        $simple = new Simple();
+        $simple->setName('simple');
         $this->assertEquals('simple', $simple->getName());
     }
     
     public function testGetValueIsNullIfNotSetName()
     {
-        $simple = new Simple('simple');
+        $simple = new Simple();
         $this->assertNull($simple->getValue());
     }
     

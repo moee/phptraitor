@@ -5,18 +5,16 @@ namespace Traitor\GetSet;
 /**
  * Simply set and get a value.
  * 
- * @Annotation
+  * @Annotation
  * @author moe
  *
  */
 class Simple implements Field
 {
-    private $value = null;
     
-    function __construct($name = null)
-    {
-        $this->setName($name);
-    }
+    private $name;
+    
+    private $fieldValue = null;
     
     function setName($name)
     {
@@ -30,12 +28,12 @@ class Simple implements Field
 
     function getValue()
     {
-        return $this->value;
+        return $this->fieldValue;
     }
 
     function setValue($value)
     {
-        $this->value = $value;
+        $this->fieldValue = $value;
         return $this;
     }
     

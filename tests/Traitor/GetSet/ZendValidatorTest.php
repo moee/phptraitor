@@ -1,5 +1,7 @@
 <?php 
 
+use Zend\Validator\Regex;
+
 use Traitor\GetSet\ZendValidator;
 
 /**
@@ -30,6 +32,4 @@ class ZendValidatorTest
         $simple->setValidator($validator);
         $simple->setValue($valueToSet);
     }
-    
-
 }
