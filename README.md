@@ -1,7 +1,9 @@
 phptraitor
 ==========
 
-A collection of traits for PHP >= 5.4. The aim is to provide a set of common used functionalities and in turn improve productivity. At the moment this is in a very early alpha stage and experimental, so use at your own risk.
+A collection of traits for PHP >= 5.4. The aim is to provide a set of common used functionalities to improve productivity by reducing repetivite tasks like writing getters and setters.
+
+At the moment this is in a very early alpha stage and experimental, so use at your own risk.
 
 Example
 -------
@@ -42,7 +44,7 @@ Add this to your composer.json:
 Usage
 -----
 
-For some example on how to use phptraitor, see the [phptraitor_demo](https://github.com/moee/phptraitor_demo) repository.
+For some examples on how to use phptraitor, see the [phptraitor_demo](https://github.com/moee/phptraitor_demo) repository.
 
 Build Status
 ------------
