@@ -1,7 +1,28 @@
 phptraitor
 ==========
 
-A collection of traits for PHP >= 5.4. At the moment this is in a very early alpha stage and experimental, so use at your own risk.
+A collection of traits for PHP >= 5.4. The aim is to provide a set of common used functionalities and in turn improve productivity. At the moment this is in a very early alpha stage and experimental, so use at your own risk.
+
+Example
+-------
+A quick example so you get an idea what this is all about:
+
+    <?php
+    class Sample {
+        use \Traitor\GetSet;
+
+        /**
+         * @ZendValidator("Between", options={"min":1,"max":10})
+         */
+        private $score;
+    }
+
+The `GetSet` trait now reads the annotation of the fields and automatically provides a setter and a getter for the class Sample. If the setter is called, Zend_Validate_Between is called that will check if the passed value is between 1 and 10:
+
+    <?php
+    $sample = new Sample();
+    $sample->setScore(5); // will work
+    $sample->setScore(14); // will throw an InvalidArgumentException
 
 Installation
 ------------
