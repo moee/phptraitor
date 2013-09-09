@@ -38,7 +38,7 @@ Add this to your composer.json:
         }
     ],
     "require": {
-        "moee/phptraitor": "dev-working"
+        "moee/phptraitor": "dev-master"
     }
 
 Usage
