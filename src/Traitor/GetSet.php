@@ -30,7 +30,10 @@ trait GetSet {
             foreach ($phpParser->getPropertyAnnotations($property) as $annotation) {
                 if ($annotation instanceof Field) {
                     $annotation->setName($property->getName());
-                    $this->fields[] = $annotation;
+                    if (!isset($this->fields[$property->getName()])) {
+                        $this->fields[$property->getName()] = array();
+                    }
+                    $this->fields[$property->getName()][] = $annotation;
                 }
             }
         }
@@ -38,14 +41,21 @@ trait GetSet {
         $action = substr($method, 0, 3);
         $name = lcfirst(substr($method, 3));
         foreach ($this->fields as $field) {
-            if ($field->getName() == $name) {
+            foreach($field as $annotation) {
+            if ($annotation->getName() == $name) {
                 if ($action == 'set') {
+<<<<<<< Updated upstream
                     $field->setValue($value[0]);
                     return $this;
+=======
+                    $annotation->setValue($value[0]);
+                    $found = true;
+>>>>>>> Stashed changes
                 } elseif ($action == 'get') {
-                    return $field->getValue();
+                    return $annotation->getValue();
                 }
             } 
+            }
         }
         throw new \BadMethodCallException("Method " . $method . " does not exist");
     }
