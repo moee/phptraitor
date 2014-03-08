@@ -7,7 +7,9 @@ At the moment this is in a very early alpha stage and experimental, so use at yo
 
 Example
 -------
-A quick example so you get an idea what this is all about:
+Some quick examples so you get an idea what this is all about.
+
+### GetSet: Create setters and getters automatically
 
     <?php
     class Sample {
@@ -25,6 +27,24 @@ The `GetSet` trait now reads the annotation of the fields and automatically prov
     $sample = new Sample();
     $sample->setScore(5); // will work
     $sample->setScore(14); // will throw an InvalidArgumentException
+
+### SmartIterator: Convenience methods for iterators
+
+
+    class SampleIterator
+        implements \Iterator 
+    {
+        use Traitor\SmartIterator;
+    }
+
+`SampleIterator` automatically implements all Iterator methods plus it provides an `all()` and an `any()` method:
+
+    $smartIterator = new SampleIterator();
+    $smartIterator->add(5);
+    $smartIterator->add(10);
+    $smartIterator->add(15);
+    $smartIterator->all(function($e) { return $e < 12; }); // will return false, because not all elements are < 12
+    $smartIterator->any(function($e) { return $e < 12; }); // will return true, because there is at least one element < 12
 
 Installation
 ------------
