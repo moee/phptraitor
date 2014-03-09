@@ -58,6 +58,32 @@ class SmartIteratorTest
         $smartIterator->add(15);
         $this->assertFalse($smartIterator->all(function($e) { return $e < 12; }));
     }           
+
+    public function testMap()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->add(5);
+        $smartIterator->add(10);
+        $smartIterator->map(function($e) { return $e * 3; });
+        $this->assertEquals(array(15, 30), $smartIterator->toArray());
+    }
+
+    public function testSelect()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->add(5);
+        $smartIterator->add(8);
+        $smartIterator->add(10);
+        $result = $smartIterator->select(function($e) { return $e > 6; });
+        $this->assertEquals(array(8, 10), $result->toArray());
+    }
+
+    public function testMapReturnsSelf()
+    {
+        $smartIterator = new SampleIterator();
+        
+        $this->assertEquals($smartIterator, $smartIterator->map(function($e) {}));
+    }
 }
 
 class SampleIterator

@@ -78,4 +78,41 @@ trait SmartIterator {
         }
         return false;
     }
+
+    /**
+     * applies the return value of $lambda to each
+     * element of the iterator.
+     **/
+    public function map($lambda)
+    {  
+        foreach ($this as $k=>$e) {
+            $this->array[$k] = $lambda($e);
+        }
+        return $this;
+    }
+
+    public function clear()
+    {
+        $this->array = array();
+        $this->rewind();
+    }
+
+    public function select($lambda)
+    {
+        $result = clone $this; 
+        $result->clear();
+        
+        foreach ($this as $e) {
+            if ($lambda($e)) {
+                $result->add($e);
+            }
+        }
+
+        return $result;
+    }
+
+    public function toArray()
+    {
+        return $this->array;
+    }
 }
