@@ -68,6 +68,12 @@ class SmartIteratorTest
         $this->assertEquals(array(15, 30), $smartIterator->toArray());
     }
 
+    public function testAddReturnsSelf()
+    {
+        $smartIterator = new SampleIterator();
+        $this->assertEquals($smartIterator, $smartIterator->add(5));
+    }
+
     public function testSelect()
     {
         $smartIterator = new SampleIterator();
@@ -84,6 +90,34 @@ class SmartIteratorTest
         
         $this->assertEquals($smartIterator, $smartIterator->map(function($e) {}));
     }
+
+    public function testGuard()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->setGuard(function($e) { return is_int($e) && $e > 10; }); 
+        $this->assertEquals(11, $smartIterator->add(11)->current());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testGuardFails()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->setGuard(function($e) { return is_int($e) && $e > 10; }); 
+        $smartIterator->add(4);
+    } 
+
+    /**
+     * A guard can only be set before the first value has been added.
+     * @expectedException \RuntimeException
+     */
+    public function testGuardIsImmutable()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->add(4);
+        $smartIterator->setGuard(function($e) { return is_int($e) && $e > 10; }); 
+    } 
 }
 
 class SampleIterator

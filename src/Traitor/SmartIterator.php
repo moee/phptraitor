@@ -39,7 +39,20 @@ trait SmartIterator {
 
     public function add($element)
     {
+        if (isset($this->_guard)) {
+            $g = $this->_guard;
+            if (!$g($element)) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Guard returns false for value %s',
+                        $element
+                    )
+                ); 
+            }
+        }
+
         $this->array[] = $element;
+        return $this;
     }
 
     private function getPosition()
@@ -109,6 +122,17 @@ trait SmartIterator {
         }
 
         return $result;
+    }
+
+    public function setGuard($guard)
+    {
+        if (isset($this->array) && count($this->array) > 0) {
+            throw new \RuntimeException(
+                'A guard cannot be set fater the first value has been added'
+            );
+        }
+
+        $this->_guard = $guard;
     }
 
     public function toArray()
