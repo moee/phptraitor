@@ -37,14 +37,16 @@ The `GetSet` trait now reads the annotation of the fields and automatically prov
         use Traitor\SmartIterator;
     }
 
-`SampleIterator` automatically implements all Iterator methods plus it provides an `all()` and an `any()` method:
+`SampleIterator` automatically implements all Iterator methods plus it provides an `all()`, `any()`, `select()` and `map()` method. You can also specify an anonymous guard function that will check all values that are added to the Iterator.
 
     $smartIterator = new SampleIterator();
-    $smartIterator->add(5);
-    $smartIterator->add(10);
-    $smartIterator->add(15);
+    $smartIterator->setGuard(function($e) { return is_int($e); });
+    $smartIterator->add(5)->add(10)->add(15);
     $smartIterator->all(function($e) { return $e < 12; }); // will return false, because not all elements are < 12
     $smartIterator->any(function($e) { return $e < 12; }); // will return true, because there is at least one element < 12
+    $smartIterator->select(function($e) { return $e < 12; })->toArray(); // will return array(5, 10)
+    $smartIterator->map(function($e) { return $e*2; })->toArray(); // will return array(10, 20, 30)
+    $smartIterator->add('2'); // will fail, because the guard function evaluates to false
 
 Installation
 ------------
