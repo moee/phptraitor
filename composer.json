@@ -18,6 +18,8 @@
         "phpunit/phpunit-mock-objects": "1.2.3"
     },
     "autoload": {
-        "files": ["src/Traitor/Autoloader.php"]
+        "psr-0": {
+            "Traitor": "src/"
+        }
     }
 }
