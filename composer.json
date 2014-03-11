@@ -16,8 +16,5 @@
         "zendframework/zend-stdlib": "2.2.4",
         "zendframework/zend-validator": "2.2.4",
         "phpunit/phpunit-mock-objects": "1.2.3"
-    },
-    "autoload": {
-        "files": ["src/Traitor/Autoloader.php"]
     }
 }
