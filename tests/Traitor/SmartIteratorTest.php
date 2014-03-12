@@ -118,10 +118,17 @@ class SmartIteratorTest
         $smartIterator->add(4);
         $smartIterator->setGuard(function($e) { return is_int($e) && $e > 10; }); 
     } 
+
+    public function testFromToSemantics()
+    {
+        $smartIterator = new SampleIterator();
+        $smartIterator->from(1)->to(100);
+        $this->assertEquals(100, count($smartIterator));
+    } 
 }
 
 class SampleIterator
-    implements \Iterator 
+    implements \Iterator, \Countable
 {
     use Traitor\SmartIterator;
     

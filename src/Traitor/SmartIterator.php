@@ -6,8 +6,8 @@ namespace Traitor;
  * Trait that aims to make using iterators more convenient  
  * @author moe
  */
-trait SmartIterator {
-    
+trait SmartIterator
+{
     public function rewind()
     {
         $this->getPosition();
@@ -138,5 +138,22 @@ trait SmartIterator {
     public function toArray()
     {
         return $this->array;
+    }
+
+    public function from($from)
+    {
+        $this->from = $from;
+        return $this;
+    }
+
+    public function to($to)
+    {
+        $this->array = range($this->from, $to);
+        return $this;
+    }
+
+    public function count()
+    {
+        return count($this->array);
     }
 }
