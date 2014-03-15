@@ -137,7 +137,7 @@ trait SmartIterator
 
     public function toArray()
     {
-        return $this->array;
+        return isset($this->array) ? $this->array : array();
     }
 
     public function from($from)
