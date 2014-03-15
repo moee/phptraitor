@@ -128,7 +128,7 @@ trait SmartIterator
     {
         if (isset($this->array) && count($this->array) > 0) {
             throw new \RuntimeException(
-                'A guard cannot be set fater the first value has been added'
+                'A guard cannot be set after the first value has been added'
             );
         }
 
